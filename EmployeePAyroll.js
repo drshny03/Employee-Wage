@@ -16,22 +16,34 @@ class EmployeePayroll{
     }
     //getter and setter
     get name(){
-        return this.name;
+        return this._name;
     }
     set name(name){
-        this.name = name;
+        let regex = RegExp('^[A-Z]{1}[a-z]{3,}$');
+        if(regex.test(name)){
+            this._name = name;
+        }else{
+            throw "name is incorrect";
+            
+        }
     }
     toString(){
-        return "id = "+this.id+", name = "+this.name+", salary= "+this.salary," gender= ",this.gender,", startDate= ",this.startDate;
+        return "id = "+this.id+", name = "+this.name+", salary= "+this.salary+" gender= "+this.gender+", startDate= "+this.startDate;
     }
 }
 //create employee object
 let rajveerEmployeePayroll = new EmployeePayroll(1,"Rajveer",80000);
 console.log(rajveerEmployeePayroll.toString());
-rajveerEmployeePayroll.name = "Veer";
-console.log(rajveerEmployeePayroll.toString());
+try{
+    rajveerEmployeePayroll.name = "veer";
+    console.log(rajveerEmployeePayroll.toString());
+}catch(exception){
+    console.error(exception);
+    
+}
+
 
 //new empl0yee
 let darshanEmployee = new EmployeePayroll(2,"Darshan", 75000, "M", "25-02-2025")
-console.log(darshanEmployee.toString);
+console.log(darshanEmployee.toString());
 
