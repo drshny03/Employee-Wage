@@ -6,7 +6,7 @@ const WAGE_PER_HOUR = 20;
 
 //method to calculate daily wage
 function calculateDailyWage(employeeHour){
-    return totalEmployeeHour * WAGE_PER_HOUR;
+    return employeeHour * WAGE_PER_HOUR;
 }
 //method to calculate working hour
 function getWorkingHour(employeeCheck){
@@ -25,8 +25,9 @@ const MAX_HOUR_IN_MONTH = 160;
 let totalEmployeeHour = 0;
 let totalWorkingDay = 0;
 
-//array to store daily wage
+//array and map to store daily wage
 let dailyWageArray = new Array();
+let dailyWageMap = new Map();
 
 while(totalEmployeeHour <= MAX_HOUR_IN_MONTH && totalWorkingDay < NUMBER_OF_DAYS){
     totalWorkingDay++;
@@ -34,7 +35,10 @@ while(totalEmployeeHour <= MAX_HOUR_IN_MONTH && totalWorkingDay < NUMBER_OF_DAYS
     let employeeHour = getWorkingHour(employeeCheck);
     totalEmployeeHour += employeeHour;
     dailyWageArray.push(calculateDailyWage(employeeHour));
+    dailyWageMap.set(totalWorkingDay, calculateDailyWage(employeeHour))
 }
+//print map
+console.log("map\n",dailyWageMap);
 
 let employeeWage = calculateDailyWage(totalEmployeeHour)
 
