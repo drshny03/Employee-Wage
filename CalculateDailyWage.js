@@ -29,16 +29,27 @@ let totalWorkingDay = 0;
 let dailyWageArray = new Array();
 let dailyWageMap = new Map();
 let dailyHourMap = new Map();
+let dailyHourAndWageArray = new Array();
 
 while(totalEmployeeHour <= MAX_HOUR_IN_MONTH && totalWorkingDay < NUMBER_OF_DAYS){
     totalWorkingDay++;
     let employeeCheck = Math.floor(Math.random()*10%3);
     let employeeHour = getWorkingHour(employeeCheck);
     totalEmployeeHour += employeeHour;
+    dailyHourAndWageArray.push(
+        {
+            dayNumber:totalWorkingDay,
+            dailyHours:employeeHour,
+            dailyWage:calculateDailyWage(employeeHour),
+            toString(){
+                return '\nDay'+this.dayNumber+'=> working hours is '+ this.dailyHours+' and wage earned = '+this.dailyWage
+            }
+        });
     dailyWageArray.push(calculateDailyWage(employeeHour));
     dailyWageMap.set(totalWorkingDay, calculateDailyWage(employeeHour))
     dailyHourMap.set(totalWorkingDay, employeeHour)
 }
+
 //print map
 console.log("map\n",dailyWageMap);
 
@@ -122,3 +133,5 @@ dailyHourMap.forEach((value,key,map) => {
         nonWorkingDays.push(key)
 });
 console.log("full working days - ", fullWorkingDays ,"\npart time working days-",partWorkingDays,"\nnon working days-",nonWorkingDays);
+
+console.log("daily worked hours and wage earned "+dailyHourAndWageArray);
