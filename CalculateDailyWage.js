@@ -17,15 +17,16 @@ function getWorkingHour(employeeCheck){
 }
 //number of working day
 const NUMBER_OF_DAYS = 20;
-let employeeHour = 0;
+const MAX_HOUR_IN_MONTH = 160;
+let totalEmployeeHour = 0;
+let totalWorkingDay = 0;
 
-//calculate for 20 days
-for(let day = 0; day<NUMBER_OF_DAYS; day++){
+while(totalEmployeeHour <= MAX_HOUR_IN_MONTH && totalWorkingDay < NUMBER_OF_DAYS){
+    totalWorkingDay++;
     let employeeCheck = Math.floor(Math.random()*10%3);
-    //call function to calculate working hour
-    employeeHour += getWorkingHour(employeeCheck)
+    totalEmployeeHour += getWorkingHour(employeeCheck);
 }
 
-let employeeWage = employeeHour * WAGE_PER_HOUR;
+let employeeWage = totalEmployeeHour * WAGE_PER_HOUR;
 //print result
-console.log("employee wage ", employeeWage)
+console.log("total days ",totalWorkingDay," total hours ", totalEmployeeHour, " employee wage ", employeeWage)
